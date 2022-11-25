@@ -2,6 +2,13 @@
 
 use serde_derive::Deserialize;
 use reqwest::Client;
+use clap::Parser;
+
+#[derive(Debug, Parser)]
+#[clap(version, about="Check whether a website is up or down")]
+struct Cli{
+    site_url: String
+}
 
 #[derive(Debug, Deserialize)]
 struct Response{
@@ -16,8 +23,10 @@ struct Response{
 #[tokio::main]
 async fn main() {
 
+    let args = Cli::parse();
+
     let client: Response= Client::new()
-        .get("https://isitup.org/pratushrai.io.json")
+        .get(format!("https://isitup.org/{}.json", args.site_url))
         .send()
         .await
         .unwrap()
