@@ -17,12 +17,13 @@ struct Response{
 async fn main() {
 
     let client: Response= Client::new()
-                            .get("https://isitup.org/pratushrai.io.json")
-                            .send()
-                            .await
-                            .unwrap()
-                            .json()
-                            .await
-                            .unwrap();
+        .get("https://isitup.org/pratushrai.io.json")
+        .send()
+        .await
+        .unwrap()
+        .json()
+        .await
+        .unwrap();
+        
     println!("{:#?}", client);
 }
