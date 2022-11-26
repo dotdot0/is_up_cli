@@ -33,6 +33,11 @@ async fn main() {
         .json()
         .await
         .unwrap();
-        
-    println!("{:#?}", client);
+    
+    if client.status_code == 1{
+        println!("👍🏻 Up")    
+    }
+    else{
+        println!("❌ Down")
+    }
 }
